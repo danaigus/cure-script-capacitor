@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@capacitor/cli": "^6.2.0",
     "@types/glob": "^8.1.0",
     "@types/node": "^20.11.25",
     "prettier": "^3.2.5",
@@ -9,9 +10,17 @@
   "scripts": {
     "docs:dev": "vitepress dev config",
     "docs:build": "vitepress build config",
-    "docs:preview": "vitepress preview config"
+    "docs:preview": "vitepress preview config",
+    "add-android": "npm run docs:build && npx cap add android",
+    "content-sync": "npm run docs:build && npx cap sync",
+    "build:android": "cd android && gradlew assembleDebug",
+    "open-folder:apk": "node open-apk-folder.js",
+    "rebuild:apk": "npm run content-sync && npm run build:android && npm run open-folder:apk"
   },
   "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/core": "^6.2.0",
     "fs": "^0.0.1-security",
     "glob": "^10.3.10",
     "path": "^0.12.7"
